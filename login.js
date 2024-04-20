@@ -28,7 +28,7 @@ googleLogin.addEventListener("click",function(){
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const user = result.user;
     console.log("user",user);
-    window.location.href="../ChatMat.html";
+    window.location.href="/ChatMat.html";
 
 
   }).catch((error) => {
