@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Login Form Design</title>
+  <link rel="stylesheet" href="login.css">
+
+
+</head>
+
+<body>
+  <div class="box">
+    <h2>Login</h2>
+    <div class="inputBox">
+      <input type="text" name="" required="">
+      <label for="">Username</label>
+    </div>
+    <div class="inputBox">
+      <input type="password" name="" required="">
+      <label for="">Password</label>
+    </div>
+    <input type="submit" name="" value="Submit">
+    <div class="or">
+      --OR--
+    </div>
+    <div id="btn" class="g-signin2">
+      <div class="google-log">
+      </div>
+      <div class="google-text">
+        Google
+      </div>  
+    </div>
+  </div>
+ <script type="module">
+  
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getAuth , GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyCPT7YljgWzidU8VR0vpPFwTVruBkF9fwU",
+    authDomain: "chatmat-752f4.firebaseapp.com",
+    projectId: "chatmat-752f4",
+    storageBucket: "chatmat-752f4.appspot.com",
+    messagingSenderId: "868960762445",
+    appId: "1:868960762445:web:7f292194abb0b5eb39fa04",
+    measurementId: "G-223QXY1Q60"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+auth.languageCode = 'en';
+const provider = new GoogleAuthProvider();
+
+const googleLogin = document.getElementById("btn");
+googleLogin.addEventListener("click",function(){
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const user = result.user;
+    console.log("user",user);
+    window.location.href="../ChatMat.html";
+
+
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+})
+
+ </script>
+
+</body>
+
+</html>
